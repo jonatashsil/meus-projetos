@@ -1,0 +1,4 @@
+const bcrypt=require('bcrypt'); const jwt=require('jsonwebtoken'); const prisma=require('../lib/prisma');
+async function login(req,res){try{const {email,senha}=req.body;if(!email||!senha)return res.status(400).json({erro:'Email e senha são obrigatórios.'});const usuario=await prisma.usuario.findUnique({where:{email:email.trim().toLowerCase()}});if(!usuario?.ativo||!(await bcrypt.compare(senha,usuario.senha)))return res.status(401).json({erro:'Email ou senha inválidos.'});const token=jwt.sign({id:usuario.id,perfil:usuario.perfil},process.env.JWT_SECRET,{expiresIn:process.env.JWT_EXPIRES_IN||'8h'});res.json({token,usuario:{id:usuario.id,nome:usuario.nome,email:usuario.email,cargo:usuario.cargo,perfil:usuario.perfil}});}catch(e){console.error(e);res.status(500).json({erro:'Erro interno no login.'});}}
+function me(req,res){res.json({usuario:req.user});}
+module.exports={login,me};
