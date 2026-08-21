@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Perfil { ADMIN FUNCIONARIO }
+enum TipoPonto { ENTRADA INICIO_INTERVALO FIM_INTERVALO SAIDA }
+
+model Usuario {
+  id Int @id @default(autoincrement())
+  nome String
+  email String @unique
+  senha String
+  cargo String?
+  perfil Perfil @default(FUNCIONARIO)
+  ativo Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  registros RegistroPonto[]
+}
+
+model LocalTrabalho {
+  id Int @id @default(autoincrement())
+  nome String
+  latitude Float
+  longitude Float
+  raioMetros Int @default(150)
+  ativo Boolean @default(true)
+  createdAt DateTime @default(now())
+}
+
+model RegistroPonto {
+  id Int @id @default(autoincrement())
+  tipo TipoPonto
+  latitude Float
+  longitude Float
+  precisaoMetros Float?
+  endereco String?
+  dispositivo String?
+  autorizado Boolean @default(true)
+  motivoValidacao String?
+  dataHora DateTime @default(now())
+  usuarioId Int
+  usuario Usuario @relation(fields: [usuarioId], references: [id], onDelete: Restrict)
+  @@index([usuarioId, dataHora])
+  @@index([dataHora])
+}
