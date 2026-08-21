@@ -1,0 +1,4 @@
+require('dotenv').config(); const bcrypt=require('bcrypt'); const {PrismaClient}=require('@prisma/client'); const {PrismaPg}=require('@prisma/adapter-pg');
+const prisma=new PrismaClient({adapter:new PrismaPg({connectionString:process.env.DATABASE_URL})});
+async function main(){const email=(process.env.ADMIN_EMAIL||'admin@ponto.local').toLowerCase(),senha=process.env.ADMIN_PASSWORD;if(!senha||senha.length<8)throw new Error('Defina ADMIN_PASSWORD com pelo menos 8 caracteres no .env');const hash=await bcrypt.hash(senha,12);await prisma.usuario.upsert({where:{email},update:{nome:process.env.ADMIN_NAME||'Administrador',senha:hash,perfil:'ADMIN',ativo:true},create:{nome:process.env.ADMIN_NAME||'Administrador',email,senha:hash,perfil:'ADMIN',ativo:true}});console.log(`Administrador pronto: ${email}`);}
+main().catch(e=>{console.error(e);process.exitCode=1;}).finally(()=>prisma.$disconnect());
