@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Controle básico de medições de serviços de obra.">
+  <title>Controle de Medições</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div>
+      <span class="eyebrow">Gestão de obras</span>
+      <h1>Controle de medições</h1>
+      <p>Registre os serviços, o valor contratado e o percentual executado.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="summary" aria-label="Resumo das medições">
+      <article><span>Serviços medidos</span><strong id="services-count">0</strong></article>
+      <article><span>Total contratado</span><strong id="contracted-total">R$ 0,00</strong></article>
+      <article class="highlight"><span>Total medido</span><strong id="measured-total">R$ 0,00</strong></article>
+    </section>
+
+    <section class="panel">
+      <form id="measurement-form">
+        <label>Serviço<input id="service" placeholder="Ex.: Pintura da fachada" required></label>
+        <label>Valor contratado (R$)<input id="contract-value" type="number" min="0.01" step="0.01" required></label>
+        <label>Executado (%)<input id="progress" type="number" min="0" max="100" step="0.1" required></label>
+        <button type="submit">Adicionar medição</button>
+      </form>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Serviço</th><th>Contrato</th><th>Executado</th><th>Medido</th><th></th></tr></thead>
+          <tbody id="measurement-list"></tbody>
+        </table>
+        <p id="empty-state">Nenhuma medição cadastrada.</p>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

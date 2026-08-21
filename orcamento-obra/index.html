@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculadora simples para estimar custos de uma obra.">
+  <title>Calculadora de Orçamento de Obra</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <section class="intro">
+      <span class="tag">Construção civil</span>
+      <h1>Orçamento de obra</h1>
+      <p>Faça uma estimativa inicial de materiais, mão de obra e reserva para imprevistos.</p>
+    </section>
+
+    <section class="card">
+      <form id="budget-form">
+        <label>
+          Área da obra (m²)
+          <input id="area" type="number" min="0.01" step="0.01" placeholder="Ex.: 80" required>
+        </label>
+        <label>
+          Materiais por m² (R$)
+          <input id="materials" type="number" min="0" step="0.01" placeholder="Ex.: 950" required>
+        </label>
+        <label>
+          Mão de obra por m² (R$)
+          <input id="labor" type="number" min="0" step="0.01" placeholder="Ex.: 650" required>
+        </label>
+        <label>
+          Reserva para imprevistos (%)
+          <input id="reserve" type="number" min="0" max="100" step="0.1" value="10" required>
+        </label>
+        <button type="submit">Calcular orçamento</button>
+      </form>
+
+      <div id="result" class="result" aria-live="polite">
+        <div><span>Materiais</span><strong id="materials-total">R$ 0,00</strong></div>
+        <div><span>Mão de obra</span><strong id="labor-total">R$ 0,00</strong></div>
+        <div><span>Reserva</span><strong id="reserve-total">R$ 0,00</strong></div>
+        <div class="grand-total"><span>Total estimado</span><strong id="grand-total">R$ 0,00</strong></div>
+      </div>
+    </section>
+
+    <p class="notice">Estimativa informativa. Um orçamento executivo exige levantamento detalhado dos serviços.</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Controle pessoal de receitas e despesas.">
+  <title>Controle de Gastos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div><span class="badge">Finanças pessoais</span><h1>Meu controle financeiro</h1><p>Registre o que entra e o que sai. Os dados ficam salvos no navegador.</p></div>
+    </header>
+
+    <section class="balances">
+      <article><span>Receitas</span><strong id="income">R$ 0,00</strong></article>
+      <article><span>Despesas</span><strong id="expense">R$ 0,00</strong></article>
+      <article class="balance"><span>Saldo atual</span><strong id="balance">R$ 0,00</strong></article>
+    </section>
+
+    <section class="workspace">
+      <form id="transaction-form">
+        <h2>Novo lançamento</h2>
+        <label>Descrição<input id="description" placeholder="Ex.: Supermercado" required></label>
+        <label>Categoria<select id="category"><option>Alimentação</option><option>Moradia</option><option>Transporte</option><option>Saúde</option><option>Salário</option><option>Outros</option></select></label>
+        <label>Tipo<select id="type"><option value="expense">Despesa</option><option value="income">Receita</option></select></label>
+        <label>Valor (R$)<input id="amount" type="number" min="0.01" step="0.01" required></label>
+        <button>Salvar lançamento</button>
+      </form>
+
+      <div class="history">
+        <h2>Histórico</h2>
+        <ul id="transaction-list"></ul>
+        <p id="empty-state">Nenhum lançamento cadastrado.</p>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
