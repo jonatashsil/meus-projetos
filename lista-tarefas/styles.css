@@ -1,0 +1,25 @@
+:root { font-family: Inter, system-ui, sans-serif; color: #312e45; background: #f3f0ff; }
+* { box-sizing: border-box; }
+body { display: grid; min-height: 100vh; margin: 0; place-items: center; padding: 30px 0; background: radial-gradient(circle at top, #ddd6fe, transparent 48%), #f5f3ff; }
+.app { width: min(620px, 92%); padding: 32px; border: 1px solid #ddd6fe; border-radius: 24px; background: rgba(255,255,255,.94); box-shadow: 0 25px 70px rgba(76,29,149,.14); }
+header span { color: #7c3aed; font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+h1 { margin: 8px 0 5px; font-size: 2.35rem; }
+p { color: #7c758f; }
+form { display: flex; gap: 10px; margin: 25px 0 18px; }
+input { flex: 1; min-width: 0; padding: 13px 14px; border: 1px solid #d7d0e5; border-radius: 10px; font: inherit; }
+input:focus { outline: 3px solid rgba(124,58,237,.14); border-color: #8b5cf6; }
+button { padding: 12px 15px; border: 0; border-radius: 9px; background: #7c3aed; color: #fff; font: inherit; font-weight: 750; cursor: pointer; }
+button:hover { background: #6d28d9; }
+nav { display: flex; gap: 7px; padding-bottom: 14px; border-bottom: 1px solid #eeeaf5; }
+.filter { padding: 8px 11px; background: transparent; color: #756c88; font-size: .83rem; }
+.filter.active { background: #ede9fe; color: #6d28d9; }
+ul { display: grid; gap: 9px; margin: 16px 0; padding: 0; list-style: none; }
+li { display: flex; align-items: center; gap: 11px; padding: 13px; border: 1px solid #ece7f3; border-radius: 11px; }
+li.completed .task-text { color: #a59eaf; text-decoration: line-through; }
+input[type="checkbox"] { flex: 0 0 auto; width: 18px; height: 18px; accent-color: #7c3aed; }
+.task-text { flex: 1; overflow-wrap: anywhere; }
+.remove { padding: 5px 8px; background: #fef2f2; color: #dc2626; }
+.footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid #eeeaf5; color: #7c758f; font-size: .82rem; }
+#clear-completed { padding: 7px; background: transparent; color: #7c3aed; }
+#empty-state { text-align: center; padding: 25px 0 5px; }
+@media (max-width: 480px) { .app { padding: 23px; } form { flex-direction: column; } nav { overflow-x: auto; } }
